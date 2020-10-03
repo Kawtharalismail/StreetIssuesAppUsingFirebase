@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "490423155526",
+    "firebase_url": "https://my-streetissues.firebaseio.com",
+    "project_id": "my-streetissues",
+    "storage_bucket": "my-streetissues.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490423155526:android:01c24657e4cee915a80347",
+        "android_client_info": {
+          "package_name": "com.barmej.streetissues"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490423155526-gsh1dmrp43c1j271f0i3du25dc88v19i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.barmej.streetissues",
+            "certificate_hash": "18a039d0232ba789db15fa9a2433129744ebf1f3"
+          }
+        },
+        {
+          "client_id": "490423155526-tcd2ig9843088jfc5ga6hvsqes0963cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8b7mNqCVtGm-ZcdcJeNykGb9h5KLpbDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490423155526-tcd2ig9843088jfc5ga6hvsqes0963cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
