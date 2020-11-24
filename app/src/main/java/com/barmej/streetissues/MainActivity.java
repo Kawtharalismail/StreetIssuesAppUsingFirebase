@@ -11,10 +11,13 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.barmej.streetissues.Fragments.IssuesListFragment;
 import com.barmej.streetissues.Fragments.IssuesMapFragment;
@@ -23,13 +26,16 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private final List<Fragment> fragments=new ArrayList<>();
     private FloatingActionButton addIssueFloatingActionButton;
+    private TextView textViewEnglish;
+    private TextView textViewArabic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,22 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new IssuesMapFragment());
         viewPager.setAdapter(pagerAdapter);
         tableLayout.setupWithViewPager(viewPager);
+        findViewById(R.id.textViewEnglish).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setLocale("En");
+                recreate();
+            }
+        });
+        findViewById(R.id.textViewArabic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setLocale("Ar");
+                recreate();
+
+            }
+        });
+
        findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -52,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void setLocale(String lng) {
+        Locale locale=new Locale(lng);
+        Locale.setDefault(locale);
+        Configuration configuration=new Configuration();
+        configuration.locale=locale;
+        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+    }
+
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
         public ViewPagerAdapter(FragmentManager fm) {
@@ -89,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
             fragments.add(fragment);
         }
     }
+
+
 
 
 }

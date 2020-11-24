@@ -20,7 +20,10 @@ import com.barmej.streetissues.Model.Issues;
 import com.barmej.streetissues.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -35,7 +38,6 @@ public class IssuesListFragment extends Fragment implements IssuesListAdapter.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -51,26 +53,27 @@ public class IssuesListFragment extends Fragment implements IssuesListAdapter.On
         mRecyclerView=view.findViewById(R.id.issuesListRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mIssues=new ArrayList<>();
+
+        mIssuesListAdapter=new IssuesListAdapter(mIssues,IssuesListFragment.this::onIssuesClick);
+        mRecyclerView.setAdapter(mIssuesListAdapter);
+
         FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("Issues").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getContext(),"start",Toast.LENGTH_LONG).show();
-                    mIssues=new ArrayList<>();
-                    for(QueryDocumentSnapshot document:task.getResult()){
-                        mIssues.add(document.toObject(Issues.class));
-                        Toast.makeText(getContext(),"hi"+ document.toObject(Issues.class).getName(),Toast.LENGTH_LONG).show();
+        firebaseFirestore.collection("Issues").orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(new
+                EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
+                        if(e==null){
+                            mIssues.clear();
+                            for(QueryDocumentSnapshot document:queryDocumentSnapshots){
+                                mIssues.add(document.toObject(Issues.class));
+                            }
+                            mIssuesListAdapter.notifyDataSetChanged();
+                        }
                     }
-                    mIssuesListAdapter=new IssuesListAdapter(mIssues,IssuesListFragment.this::onIssuesClick);
-                    mRecyclerView.setAdapter(mIssuesListAdapter);
-                }else{
-                    Toast.makeText(getContext(),"problemmmmm",Toast.LENGTH_LONG).show();
+                });
 
-                }
-            }
-        });
     }
 
     @Override

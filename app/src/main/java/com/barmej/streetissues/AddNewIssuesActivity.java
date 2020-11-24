@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -36,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
@@ -90,6 +92,15 @@ public class AddNewIssuesActivity extends AppCompatActivity implements OnMapRead
         mMapView=findViewById(R.id.chooseMapView);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
+        Toolbar toolbar=findViewById(R.id.toolbar_add_home);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
         requestExternalStoragePermission();
         requestLocationPermission();
@@ -123,9 +134,20 @@ public class AddNewIssuesActivity extends AppCompatActivity implements OnMapRead
                 {
                     mIssuesDateEditText.setError(getString(R.string.error_msg_date));
 
-                }else{
+                }
+                else if (mSelectedLatLng==null)
+                {
+                    Snackbar.make(findViewById(R.id.add_issues_constraint_layout), R.string.location_selection_error,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                }
+                else{
                     if(mIssuesPhotoUri!=null)
                         addIssuesToFirebase();
+                    else{
+                        Snackbar.make(findViewById(R.id.add_issues_constraint_layout), R.string.photo_selection_error,
+                            Snackbar.LENGTH_SHORT)
+                            .show();}
                 }
             }
         });

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Street Issues</string>
+    <string name="issues_list">قائمه المشاكل</string>
+    <string name="issues_on_map">الخارطة</string>
+    <string name="file_issue">أبلغ عن مشكلة</string>
+    <string name="title">العنوان</string>
+    <string name="description">التفاصيل</string>
+    <string name="date_sample">5 مايو 2019</string>
+    <string name="main_interface">تطبيق الابلاغ عن مشاكل الطرقات</string>
+    <string name="adding_interface">تقديم بلاغ </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choose_photo">أختر الصورة ...</string>
+    <string name="photo_selection_error">الصورة لم تحمل ..</string>
+    <string name="uploading_photo">يتم تحميل الصورة ...</string>
+    <string name="todo">TODO</string>
+    <string name="dd_issues_successful">تم اضافة الابلاغ ....</string>
+    <string name="dd_issues_faild"> فشل اضافة الابلاغ !</string>
+    <string name="uploading_task_failed">Uploading Task Failed !</string>
+    <string name="uploadin_photo_failed">فشل تحميل الصورة !</string>
+    <string name="error_msg_name">خانة العنوان فاضية ...</string>
+    <string name="error_msg_description">خانة التفاصيل فاضية ..</string>
+    <string name="error_msg_date">خانة التاريخ فاضية ..</string>
+    <string name="English">En</string>
+    <string name="Arabic">عربي</string>
+    <string name="location_selection_error">الرجاء ادخال الموقع </string>
+</resources>
