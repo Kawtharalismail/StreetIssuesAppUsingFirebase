@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     app:layout_scrollFlags="scroll|enterAlways"
-    android:background="@color/colorToolbar"
+    android:background="@color/colorPrimary"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:padding="10dp"
             android:text="@string/main_interface"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:gravity="center"
-            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,9 +45,9 @@
             android:id="@+id/textViewEnglish"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:gravity="center"
             android:padding="10dp"
             android:text="@string/English"
-            android:gravity="center"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textViewArabic"
@@ -57,8 +57,8 @@
             android:id="@+id/textViewArabic"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="10dp"
             android:gravity="center"
+            android:padding="10dp"
             android:text="@string/Arabic"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -114,6 +114,8 @@
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_add_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="@color/colorToolbar"
+        app:tint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent" />
 
 

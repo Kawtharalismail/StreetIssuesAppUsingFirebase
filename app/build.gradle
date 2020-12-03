@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        releaseConfig {
+            storeFile file('K:\\AndroidApp\\2020-barmej\\android-degree-studentproject-mapsandfirebase-base-master (1)\\android-degree-studentproject-mapsandfirebase-base-master\\streetissueskeystore.jks')
+            storePassword 'Xx7730832'
+            keyAlias 'streetissues'
+            keyPassword 'Xx7730832'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.barmej.streetissues"
@@ -15,6 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
     compileOptions {
